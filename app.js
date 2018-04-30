@@ -29,7 +29,6 @@ var threeStars = 15;
 var twoStars = 20;
 
 // create and update card html
-
 function createCard() {
    var index = 0;
    $(".card i").each(function () {  //iterates over each card, creates its HTML and
@@ -42,7 +41,7 @@ function createCard() {
 function shuffleCards() {
         deck = shuffle(deck);
         deck.forEach(createCard);
-}
+};
 
 // Places shuffled cards on page when loaded
 shuffleCards();
@@ -50,40 +49,42 @@ shuffleCards();
 // Start timer functions
 startTimer();
 
-// Primary functions of the game
-var onClick = function() {
-    if (validPick( $(this) )) {  //clicked card not open or matched
-
-        if (open.length === 0) {  //if no cards already open then just
-            openCard( $(this) );  //opens card
-
-        } else if (open.length === 1) {  //if 1 card already open
-            openCard( $(this) );   //opens card
-            moveCount++;           //adds to moves
-            updateMoveCount();     //and runs updateMoveCount funtion
-
-            if (checkForMatch()) {  //if 1 already open runs checkforMatch function
-                setTimeout(isMatch, 100);  //if matched-waits then puts in match state
-
-            } else {
-                setTimeout(flipBack, 400);//if no match-waits then flips cards back
-
-            }
-        }
-    }
+// Ensures clicked card is available then starts main logic
+function cardClick() {
+  if (available( $(this) )) {
+    gamePlay( $(this) );
+  }
 };
 
-// Ensures selected card is not already open or matched
-function validPick(card) {
-    return !(card.hasClass("open") || card.hasClass("match"));//card not in open or match state
+// Ensures selected card is not already open
+function available(card) {
+    return !(card.hasClass("open and show"));
+};
+
+// Primary logic of the game
+function gamePlay(card){
+  if (open.length === 0) {  //if no cards already open then just
+      openCard(card);  //opens card
+
+  } else if (open.length === 1) {  //if 1 card already open
+      openCard(card);        //opens card
+      moveCount++;           //adds to moves
+      updateMoveCount();     //and runs updateMoveCount funtion
+
+      if (checkForMatch()) {  //if 1 already open runs checkforMatch function
+          setTimeout(isMatch(), 100);  //if matched-waits then puts in match state
+
+      } else {
+          setTimeout(flipBack, 400);//if no match-waits then flips cards back
+
+      }
+    }
 };
 
 // Opens and shows selected card
 function openCard(card) {
-        card.addClass("open");//adds card to open class
-        card.addClass("show");//adds card to show class
-        open.push(card);//adds card to the open array-length
-
+        card.addClass("open and show");//adds card to open class
+        open.push(card);//adds card to the open array
 };
 
 // Updates HTML for number of moves. Removes star based on number of moves.
@@ -105,15 +106,15 @@ function removeStar() {
 // checks if currently open cards match
 function checkForMatch() {
     if (open[0].children().attr("class")===open[1].children().attr("class")) {
-        return true;  //checks cards in position 1 and 2 in open array to see if they match
+      return true;  //checks cards in position 1 and 2 in open array to see if they match
     }
 };
 
 // Sets open cards to the match state and checks for winner
-var isMatch = function() {
-    open.forEach(function(card) {
-        card.addClass("match");  //puts cards in match state
-    });
+function isMatch() {
+    open[0].addClass("match");   //puts card in match class
+    open[1].addClass("match");   //puts card in match class
+
     open = [];  //empties open array
     matched ++;  //adds 1 to total matches
 
@@ -124,17 +125,16 @@ var isMatch = function() {
 };
 
 // Puts unmatched open cards back to default state
-var flipBack = function() {
-    open.forEach(function(card) {
-        card.toggleClass("open");  //removes the class open from the card
-        card.toggleClass("show");  //removes the class show from the card
-    });
+function flipBack() {
+    open[0].toggleClass("open and show"); //removes the classes open and show from the card
+    open[1].toggleClass("open and show"); //removes the classes open and show from the card
+
     open = [];  //empties open array
 };
 
 // checks if all cards are matched
 function winner() {
-    if (matched === 2) {  //checks for 8 matches
+    if (matched === 8) {  //checks for 8 matches
         return true;
     }
 };
@@ -177,6 +177,6 @@ function startTimer() {
 }
 
 // Event listeners
-$(".card").click(onClick);
+$(".card").click(cardClick);
 $(".restart").click(resetGame);
 $(".play-again").click(playAgain);
