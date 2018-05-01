@@ -19,14 +19,14 @@ var deck = ["fa-diamond", "fa-diamond", "fa-paper-plane-o", "fa-paper-plane-o", 
            "fa-bicycle", "fa-bicycle", "fa-bomb", "fa-bomb"];
 
 // Game variables
+var timer;
 var open = [];
 var matched = 0;
 var moveCount = 0;
-var numStars = 3;
-var timer;
-var modal = $("#win-modal");
+var stars = 3;
 var threeStars = 15;
 var twoStars = 20;
+var modal = $("#win-modal");
 
 // create and update card html
 function createCard() {
@@ -101,8 +101,8 @@ function updateMoveCount() {
 // Removes star from remaining stars and updates modal
 function removeStar() {
     $(".fa-star").last().attr("class", "fa fa-star-o"); //removes last star on board
-    numStars--;  //reduces numStars count
-    $(".num-stars").text(String(numStars));  //updates win modal with current number of stars
+    stars--;  //reduces numStars count
+    $(".num-stars").text(String(stars));  //updates win modal with current number of stars
 };
 
 // checks if currently open cards match
