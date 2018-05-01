@@ -33,7 +33,7 @@ function createCard() {
    var index = 0;
    $(".card i").each(function () {  //iterates over each card, creates its HTML and
      $(this).attr("class", "fa " + deck[index]);  //adds each card's HTML to the page
-     index++;
+     index++;  //adds 1 to index
    });
 };
 
@@ -61,15 +61,15 @@ function available(card) {
     return !(card.hasClass("open and show"));
 };
 
-// Primary logic of the game
+// Main logic of the game
 function gamePlay(card){
   if (open.length === 0) {  //if no cards already open then just
-      openCard(card);  //opens card
+      openCard(card);       //opens card
 
   } else if (open.length === 1) {  //if 1 card already open
-      openCard(card);        //opens card
-      moveCount++;           //adds to moves
-      updateMoveCount();     //and runs updateMoveCount funtion
+      openCard(card);              //opens card
+      moveCount++;                 //adds to moves
+      updateMoveCount();           //and runs updateMoveCount funtion
 
       if (checkForMatch()) {  //if 1 already open runs checkforMatch function
           setTimeout(isMatch(), 100);  //if matched-waits then puts in match state
@@ -83,7 +83,7 @@ function gamePlay(card){
 
 // Opens and shows selected card
 function openCard(card) {
-        card.addClass("open and show");//adds card to open class
+        card.addClass("open and show");//adds card to open and show classes
         open.push(card);//adds card to the open array
 };
 
@@ -91,8 +91,10 @@ function openCard(card) {
 function updateMoveCount() {
     $(".moves").text(moveCount);  //updates move count on board with new count
 
-    if (moveCount === threeStars || moveCount === twoStars) {  //tracks total moves then
-        removeStar();                                          //runs removeStar function
+    if (moveCount === threeStars) {   //tracks total moves then
+        removeStar();               //runs removeStar function
+    } else if (moveCount === twoStars) {  //tracks total moves then
+        removeStar();                     //runs removeStar function
     }
 };
 
@@ -112,9 +114,9 @@ function checkForMatch() {
 
 // Sets open cards to the match state and checks for winner
 function isMatch() {
-    open[0].addClass("match");   //puts card in match class
-    open[1].addClass("match");   //puts card in match class
-
+    for (var i = 0, len = open.length; i < len; i++) {
+      open[i].addClass("match"); //puts cards in match class
+}
     open = [];  //empties open array
     matched ++;  //adds 1 to total matches
 
@@ -126,9 +128,9 @@ function isMatch() {
 
 // Puts unmatched open cards back to default state
 function flipBack() {
-    open[0].toggleClass("open and show"); //removes the classes open and show from the card
-    open[1].toggleClass("open and show"); //removes the classes open and show from the card
-
+    for (var i = 0, len = open.length; i < len; i++) {
+      open[i].toggleClass("open and show"); //removes the classes open and show from the card
+}
     open = [];  //empties open array
 };
 
