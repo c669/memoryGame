@@ -29,7 +29,7 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'open sans', sans-serif;
     font-weight: 300;
 }
 
@@ -129,12 +129,12 @@ h1 {
 
 /* Styling for Modal content box*/
 .modal-content {
-    background-color: #f1f442/*#fefefe*/;
+    background-color: #f1f442;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #4242f4/*#888*/;
+    border: 1px solid #4242f4;
     width: 35%;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'open Sans', sans-serif;
     font-weight: 300;
     text-align: center;
 }
