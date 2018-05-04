@@ -4,9 +4,10 @@
 
 ## Table of Contents
 
+* [Credits](#Credits)
 * [Game Play](#game-play)
 * [Functions](#functions)
-* [Credits](#Credits)
+
 
 
 ## Game play
