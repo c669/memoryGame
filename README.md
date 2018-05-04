@@ -4,9 +4,9 @@
 
 ## Table of Contents
 
-* [Game Play] (#game-play)
-* [Functions] (#functions)
-* [Credits] (#Credits)
+* [Game Play](#game-play)
+* [Functions](#functions)
+* [Credits](#Credits)
 
 
 ## Game play
@@ -19,9 +19,9 @@ The game will provide a star rating based on the number of moves it takes to com
 
 ## Functions
 * This project uses the following files:
-    * **index.html**This holds the game's html code.
-    * **app.css**This has the styling for the game.
-    * **app.js**This has the functions of the game.
+    * **index.html**: This holds the game's html code.
+    * **app.css**: This has the styling for the game.
+    * **app.js**: This has the functions of the game.
 
 ## Credits
 * This project uses code from:
