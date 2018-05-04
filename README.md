@@ -7,6 +7,7 @@
 
 * [Game Play](#game-play)
 * [Functions](#functions)
+* [Dependencies](#Dependencies)
 * [Credits](#Credits)
 
 
@@ -30,3 +31,8 @@ The game will provide a star rating based on the number of moves it takes to com
     * **Shuffle function from http://stackoverflow.com/a/2450976
     * **Timer from
     http://stackoverflow.com/questions/5517597
+
+## Dependencies
+  * **jQuery
+  * **Google Fonts
+  * **Awesome 
